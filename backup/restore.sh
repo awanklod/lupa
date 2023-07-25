@@ -2,11 +2,11 @@
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 ###########- COLOR CODE -##############
-colornow=$(cat /etc/ssnvpn/theme/color.conf)
+colornow=$(cat /etc/cloudvpn/theme/color.conf)
 NC="\e[0m"
 RED="\033[0;31m" 
-COLOR1="$(cat /etc/ssnvpn/theme/$colornow | grep -w "TEXT" | cut -d: -f2|sed 's/ //g')"
-COLBG1="$(cat /etc/ssnvpn/theme/$colornow | grep -w "BG" | cut -d: -f2|sed 's/ //g')"                    
+COLOR1="$(cat /etc/cloudvpn/theme/$colornow | grep -w "TEXT" | cut -d: -f2|sed 's/ //g')"
+COLBG1="$(cat /etc/cloudvpn/theme/$colornow | grep -w "BG" | cut -d: -f2|sed 's/ //g')"                    
 ###########- END COLOR CODE -##########
 clear
 BURIQ () {
@@ -28,7 +28,7 @@ BURIQ () {
 }
 
 MYIP=$(curl -sS ipv4.icanhazip.com)
-Name=$(curl -sS https://raw.githubusercontent.com/Vlukss/izinvps/main/ip | grep $MYIP | awk '{print $2}')
+Name=$(curl -sS https://raw.githubusercontent.com/awanklod/izinsc/main/izinnya | grep $MYIP | awk '{print $2}')
 echo $Name > /usr/local/etc/.$Name.ini
 CekOne=$(cat /usr/local/etc/.$Name.ini)
 
@@ -45,7 +45,7 @@ fi
 
 PERMISSION () {
     MYIP=$(curl -sS ipv4.icanhazip.com)
-    IZIN=$(curl -sS https://raw.githubusercontent.com/Vlukss/izinvps/main/ip | awk '{print $4}' | grep $MYIP)
+    IZIN=$(curl -sS https://raw.githubusercontent.com/awanklod/izinsc/main/izinnya | awk '{print $4}' | grep $MYIP)
     if [ "$MYIP" = "$IZIN" ]; then
     Bloman
     else
@@ -72,7 +72,7 @@ fi
 
 cd
 MYIP=$(curl -sS ipv4.icanhazip.com)
-NameUser=$(curl -sS https://raw.githubusercontent.com/Vlukss/izinvps/main/ip | grep $MYIP | awk '{print $2}')
+NameUser=$(curl -sS https://raw.githubusercontent.com/awanklod/izinsc/main/izinnya | grep $MYIP | awk '{print $2}')
 cekdata=$(curl -sS https://raw.githubusercontent.com/Vlukss/backup/main/$NameUser/$NameUser.zip | grep 404 | awk '{print $1}' | cut -d: -f1)
 
 echo -e "$COLOR1┌─────────────────────────────────────────────────┐${NC}"
@@ -125,9 +125,9 @@ sleep 1
 cp /root/backup/ss.conf /etc/shadowsocks-libev/ss.conf &> /dev/null
 echo -e "$COLOR1│${NC}  [ ${green}INFO${NC} ] • Restoring admin data..."
 sleep 1
-cp -r /root/backup/ssnvpn-pro /var/lib/ &> /dev/null
+cp -r /root/backup/cloudvpn-pro /var/lib/ &> /dev/null
 cp -r /root/backup/.acme.sh /root/ &> /dev/null
-cp -r /root/backup/ssnvpn /etc/ &> /dev/null
+cp -r /root/backup/cloudvpn /etc/ &> /dev/null
 cp -r /root/backup/xray /etc/ &> /dev/null
 cp -r /root/backup/public_html /home/vps/ &> /dev/null
 cp -r /root/backup/crontab /etc/ &> /dev/null
